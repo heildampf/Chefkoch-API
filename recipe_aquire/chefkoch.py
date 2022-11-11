@@ -102,7 +102,7 @@ class ChefKochAPI:
                 return
             soup = BeautifulSoup(response.text, 'lxml')
             if recipe_amount is None:
-                recipe_amount_string = soup.find_all("span", {"class": "ds-text-category ds-mr-3"})[0]
+                recipe_amount_string = soup.find_all("span", {"class": "ds-text-category"})[0]
                 recipe_amount = int(recipe_amount_string.get_text().strip().split(" ")[0].replace(".", ""))
                 print("Crawling " + category.title + " with " + str(recipe_amount) + " recipes.")
             page_index += 1
