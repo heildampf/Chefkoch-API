@@ -4,7 +4,8 @@ from datetime import date
 if __name__ == '__main__':
     categories = ChefKochAPI.get_categories()
     print (categories)
-    # recipe_amount = 200
+    
+    recipe_amount = 200
     # recipes = []
     #category = categories[0]
     for category in categories[0:]:
