@@ -9,7 +9,7 @@ if __name__ == '__main__':
     #category = categories[0]
     for category in categories[0:]:
         print (category)
-        if category.title == "Hauptgerichte":
+        if category.title == "Wursten":
             category_recipes = ChefKochAPI.parse_recipes(category)
             DataParser.write_recipes_to_json(str(date.today()) + "-category-" + category.title.replace(" ", "-").replace("/", "-"), category_recipes)
             """ for category_recipe in category_recipes:
