@@ -159,7 +159,7 @@ class ChefKochAPI:
                         
                     recipe_rating = 5.0
                     recipe_ratings_amount = 0
-                    recipe_rating_parent = recipe_soup.find("a", {"class": "toggle-btn ds-btn ds-btn-tertiary accordion-btn recipe-rating-btn bi-recipe-rating--closed"})
+                    recipe_rating_parent = recipe_soup.find("a", {"class": "toggle-btn ds-btn ds-btn-tertiary accordion-btn recipe-rating-btn     bi-recipe-rating--closed"})
                     if recipe_rating_parent is not None:
                         recipe_rating_direct_parent = recipe_rating_parent.find("div", {"class": "ds-rating-avg"})
                         if recipe_rating_direct_parent is not None:
