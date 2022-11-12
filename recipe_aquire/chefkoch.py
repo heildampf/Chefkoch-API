@@ -119,7 +119,7 @@ class ChefKochAPI:
                     print(str(recipe_index) + " - ", sep=' ', end='', flush=True)
                     
                     yield Recipe(recipe_name.replace(u"\u00A0", " "), recipe_id.replace(u"\u00A0", " "),
-                                category, recipe_ingredients, recipe_url)
+                                category, recipe_ingredients)
                     
                 if recipe_index >= recipe_amount -10:
                     print(str(recipe_index) + " recipes in category " +  category.title + " crawled!")
