@@ -29,19 +29,12 @@ class Ingredient:
 
 
 class Recipe:
-    def __init__(self, name, id, category, ingredients, text, instructions, tags, kcal, rating, ratings_amount, recipe_url, images):
+    def __init__(self, name, id, category, ingredients):
         self.name = name
         self.id = id
         self.category = category
         self.ingredients = ingredients
-        self.text = text
-        self.instructions = instructions
-        self.tags = tags
-        self.kcal = kcal
-        self.rating = rating
-        self.ratings_amount = ratings_amount
-        self.recipe_url = recipe_url
-        self.images = images
+        
 
     """ @staticmethod
     def from_json(json_obj):
