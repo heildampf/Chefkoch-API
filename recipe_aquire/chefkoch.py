@@ -56,15 +56,8 @@ class Recipe:
             "name": self.name,
             "id": self.id,
             "category": self.category.__dict__,
-            "ingredients": [ingredient.__dict__ for ingredient in self.ingredients],
-            "text": self.text,
-            "instructions": self.instructions,
-            "tags": [tag for tag in self.tags],
-            "kcal": self.kcal,
-            "rating": self.rating,
-            "ratings_amount": self.ratings_amount,
-            "images": [image for image in self.images]
-        }, ensure_ascii=False)
+            "ingredients": [ingredient.__dict__ for ingredient in self.ingredients]
+             }, ensure_ascii=False)
 
 
 class ChefKochAPI:
