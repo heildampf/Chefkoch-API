@@ -130,61 +130,10 @@ class ChefKochAPI:
                                 Ingredient(re.sub(' +', ' ', cols[1].text.strip().replace(u"\u00A0", " ")),
                                         re.sub(' +', ' ', cols[0].text.strip().replace(u"\u00A0", " "))))
                             
-                    recipe_text = ""
-                    recipe_text_element = recipe_soup.find("p", {"class": "recipe-text"})
-                    if recipe_text_element is not None:
-                        recipe_text = recipe_text_element.getText().strip().replace(u"\u00A0", " ")
-                    
-                    recipe_instructions = ""
-                    recipe_instructions_parent = recipe_soup.find("article", {"class": "ds-box ds-grid-float ds-col-12 ds-col-m-8 ds-or-3"})
-                    if recipe_instructions_parent is not None:
-                        recipe_instructions_element = recipe_instructions_parent.find("div")
-                        if recipe_instructions_element is not None:
-                            recipe_instructions = recipe_instructions_element.getText().strip().replace(u"\u00A0", " ")
-                    
-                    recipe_tags = []
-                    recipe_tags_parent = recipe_soup.find("div", {"class": "ds-box recipe-tags"})
-                    if recipe_tags_parent is not None:
-                        recipe_tags_direct_parents = recipe_tags_parent.find("amp-carousel").find_all("div")
-                        if recipe_tags_direct_parents is not None:
-                            for recipe_tags_direct_parent in recipe_tags_direct_parents:
-                                recipe_tag_link = recipe_tags_direct_parent.find("a", recursive=False)
-                                if recipe_tag_link is not None:
-                                    recipe_tags.append(recipe_tag_link.getText().strip().replace(u"\u00A0", " "))
-                                    
-                    recipe_kcal = 0
-                    recipe_kcal_parent =  recipe_soup.find("span", {"class": "recipe-kcalories rds-recipe-meta__badge"})
-                    if recipe_kcal_parent is not None:
-                        recipe_kcal = int(recipe_kcal_parent.contents[1].strip().split(" ")[0].strip())
-                        
-                    recipe_rating = 5.0
-                    recipe_ratings_amount = 0
-                    recipe_rating_parent = recipe_soup.find("a", {"class": "toggle-btn ds-btn ds-btn-tertiary accordion-btn recipe-rating-btn     bi-recipe-rating--closed"})
-                    if recipe_rating_parent is not None:
-                        recipe_rating_direct_parent = recipe_rating_parent.find("div", {"class": "ds-rating-avg"})
-                        if recipe_rating_direct_parent is not None:
-                            recipe_rating = float(recipe_rating_direct_parent.find("span").find("strong").getText().strip())
-                        recipe_ratings_amount_direct_parent = recipe_rating_parent.find("div", {"class": "ds-rating-count"})
-                        if recipe_ratings_amount_direct_parent is not None:
-                            recipe_ratings_amount = int(recipe_ratings_amount_direct_parent.find("span").find_all("span")[1].getText().strip().replace(".", ""))
-                            
-                    images = []
-                    images_parent = recipe_soup.find("div", {"class": "ds-mb-left recipe-image"})
-                    if images_parent is not None:
-                        images_direct_parents = images_parent.find("amp-carousel").find_all("div", recursive=False)
-                        if images_direct_parents is not None:
-                            for image_direct_parent in images_direct_parents:
-                                image_img_tag = image_direct_parent.find("amp-img")
-                                if image_img_tag.has_attr("srcset"):
-                                    images.append(image_img_tag["srcset"])
-                                elif image_img_tag.has_attr("src"):
-                                    images.append(image_img_tag["src"])
-                                    
                     print(str(recipe_index) + " - ", sep=' ', end='', flush=True)
                     
                     yield Recipe(recipe_name.replace(u"\u00A0", " "), recipe_id.replace(u"\u00A0", " "),
-                                category, recipe_ingredients, recipe_text, recipe_instructions, recipe_tags,
-                                recipe_kcal, recipe_rating, recipe_ratings_amount, recipe_url, images)
+                                category, recipe_ingredients, recipe_url)
                     
                 if recipe_index >= recipe_amount -10:
                     print(str(recipe_index) + " recipes in category " +  category.title + " crawled!")
